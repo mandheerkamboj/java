@@ -29,6 +29,8 @@ steps:
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
+    goals: 'install sonar:sonar'
+    options: '-Dsonar.projectKey=Java_Java_AY1LtWSAjWON5lvlE9Vf -Dsonar.host.url=http://localhost:9000/'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
@@ -37,7 +39,6 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
     sqMavenPluginVersionChoice: 'latest'
-    options: '-Dsonar.projectKey=Java_Java_AY1LtWSAjWON5lvlE9Vf -Dsonar.host.url=http://localhost:9000/'
 - task: SonarQubePublish@5
   inputs:
     pollingTimeoutSec: '300'
